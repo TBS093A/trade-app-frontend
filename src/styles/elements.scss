@@ -1,0 +1,91 @@
+
+@mixin center {
+  top: 50%;
+  transform: translate(0, 110%);
+  margin: auto;
+}
+
+@mixin inputStyle {
+  width: 200px;
+  height: 35px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 0px;
+  border-radius: 10px;
+  font-size: 12pt;
+  text-align: center;
+  color: rgba(111,108,106,1);
+  background-color: rgba(22,28,29,0.6);
+}
+
+@mixin buttonStyle {
+  width: 200px;
+  height: 35px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 0px;
+  border-radius: 10px;
+  font-size: 12pt;
+  color: rgba(117,82,29,1);
+  background-color: rgba(22,28,29,1);
+  transition-duration: 0.5s;
+
+  &:hover {
+    color: rgba(22,28,29,1);
+    background-color: rgba(117,82,29,0.7);
+    transition-duration: 0.1s;
+  }
+
+  &:active {
+    background-color: rgba(117,82,29,1);
+  }
+}
+
+@mixin fontStyle {
+  color: rgba(117,82,29,1);
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+@mixin backgroundDivMenubarStyle{
+  background-color: rgba(22,28,29,0.2);
+  border-bottom: 1px solid;
+  border-color: rgba(117,82,29,0.7);
+  transition-duration: 0.5s;
+}
+
+@mixin backgroundDefaultDivStyle {
+  background-color: rgba(22,28,29,0.4);
+  border: 1px solid;
+  border-color: rgba(117,82,29,0.7);
+  border-radius: 25px;
+  transition-duration: 0.5s;
+}
+
+@mixin backgroundDivButtonStyle {
+  background-color: rgba(22,28,29,0.2);
+  border: 1px solid;
+  border-color: rgba(117,82,29,0.7);
+  border-radius: 25px;
+  transition-duration: 0.5s;
+
+  &:hover {
+    background-color: rgba(22,28,29,0.5);
+    border-radius: 15px;
+  }
+}
+
+.adminDivColor {
+  background: rgb(36,0,0);
+  background: linear-gradient(180deg,
+              rgba(121,9,9,0.1) 10%,
+              rgba(0,212,255,0) 50%);
+}
+
+.moderDivColor {
+  background: rgb(0,12,36);
+  background: linear-gradient(180deg,
+            rgba(9,17,121,0.1) 10%,
+            rgba(0,212,255,0) 50%);
+}

@@ -1,0 +1,58 @@
+@import 'elements';
+
+.menuBarActive {
+  @include backgroundDivMenubarStyle
+  position: fixed;
+  width: 100%;
+  height: 75px;
+  z-index: 1;
+  padding-top: 25px;
+  margin-top: 0px;
+
+  button, p {
+    float: right;
+    margin-right: 50px;
+    transition-duration: 0.5s;
+  }
+
+  img {
+    margin-top: 34px;
+    margin-left: 150px;
+    width: 70px;
+    height: 90px;
+    position: fixed;
+  }
+
+  p {
+    padding-top: 10px;
+  }
+}
+
+.menuBar {
+  @include backgroundDivMenubarStyle
+  position: fixed;
+  width: 100%;
+  height: 75px;
+  z-index: 1;
+  padding-top: 25px;
+  margin-top: -25px;
+
+  button, p {
+    float: right;
+    margin-right: 50px;
+    transition-duration: 0.5s;
+    margin-top: -50px;
+  }
+
+  img {
+    margin-top: 34px;
+    margin-left: 150px;
+    width: 70px;
+    height: 90px;
+    position: fixed;
+  }
+
+  p {
+    padding-top: 10px;
+  }
+}

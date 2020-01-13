@@ -1,0 +1,22 @@
+@import 'elements';
+
+body {
+  margin: 0 auto;
+
+  input {
+    @include inputStyle
+  }
+
+  textarea {
+    @include inputStyle
+    text-align: left;
+  }
+
+  button {
+    @include buttonStyle
+  }
+
+  p {
+    @include fontStyle
+  }
+}

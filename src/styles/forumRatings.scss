@@ -1,0 +1,59 @@
+@import 'elements';
+@import 'indexForum';
+
+$widthRT: 40px;
+
+.rating {
+  width: $widthRT;
+  height: 250px;
+  margin-left: 40px;
+  float:left;
+}
+
+  .ratingStick {
+    width: 1px;
+    height: 250px;
+
+    background-color: rgba(117,82,29,1);
+    margin: auto;
+  }
+
+  .ratingValue {
+    transition-duration: 0.5s;
+  }
+
+    .ratingValue5 {
+      width: $widthRT;
+      height: 250px;
+      background-color: rgba(117,82,29,1);
+    }
+
+    .ratingValue4 {
+      width: $widthRT;
+      height: 200px;
+      background-color: rgba(117,82,29,1);
+    }
+
+    .ratingValue3 {
+      width: $widthRT;
+      height: 150px;
+      background-color: rgba(117,82,29,1);
+    }
+
+    .ratingValue2 {
+      width: $widthRT;
+      height: 100px;
+      background-color: rgba(117,82,29,1);
+    }
+
+    .ratingValue1 {
+      width: $widthRT;
+      height: 50px;
+      background-color: rgba(117,82,29,1);
+    }
+
+    .ratingValue0 {
+      width: $widthRT;
+      height: 1px;
+      background-color: rgba(117,82,29,1);
+    }

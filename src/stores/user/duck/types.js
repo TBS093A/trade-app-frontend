@@ -1,0 +1,9 @@
+const LOGIN_USER = 'LOGIN_USER'
+const LOGOUT_USER = 'LOGOUT_USER'
+const GET_TOKEN = 'GET_TOKEN'
+
+export default {
+  LOGIN_USER,
+  LOGOUT_USER,
+  GET_TOKEN
+}

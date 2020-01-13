@@ -1,0 +1,15 @@
+const REGISTER = 'REGISTER'
+const EDIT_ACCOUNT = 'EDIT_ACCOUNT'
+const FORUM = 'FORUM'
+const EXCHANGE = 'EXCHANGE'
+const RESET = 'RESET'
+const ADMIN_PANEL = 'ADMIN_PANEL'
+
+export default {
+  REGISTER,
+  EDIT_ACCOUNT,
+  FORUM,
+  EXCHANGE,
+  RESET,
+  ADMIN_PANEL
+}

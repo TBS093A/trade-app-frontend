@@ -1,0 +1,5 @@
+const GET_COMMENTS_RATINGS = 'GET_COMMENTS_RATINGS'
+
+export default {
+  GET_COMMENTS_RATINGS
+}

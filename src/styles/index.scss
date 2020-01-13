@@ -1,0 +1,102 @@
+@import 'elements';
+
+.indexView {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(31,34,35,1);
+  overflow-x: hidden;
+}
+
+  #indexVideo {
+    opacity: 0.1;
+    position: fixed;
+    margin-bottom: -100vh;
+    filter: saturate(100%) sepia(100%);
+  }
+
+  .interface {
+    width: 1030px;
+    height: 300px;
+    @include center;
+  }
+
+    @mixin OneDiv {
+      width: 300px;
+      height: auto;
+      padding: 50px;
+      margin-top: -125px;
+      margin-right: auto;
+      margin-left: auto;
+
+      @include BigButtonStyle
+
+      input {
+        @include inputStyle
+        width: 100%;
+      }
+
+      button {
+        @include buttonStyle
+      }
+    }
+
+    @mixin DefaultDiv {
+      width: 200px;
+      height: 200px;
+      padding: 50px;
+      margin-right: 40px;
+      float: left;
+    }
+
+    @mixin BigButtonStyle {
+
+      @include backgroundDivButtonStyle
+
+      color: rgba(117,82,29,1);
+      font-size: 20pt;
+      text-align: center;
+
+      img {
+        width: 150px;
+        height: 200px;
+        opacity: 0.7;
+      }
+      &:hover{
+        img {
+          opacity: 1;
+        }
+      }
+    }
+
+    @mixin BttAndLogin {
+      @include DefaultDiv
+      @include BigButtonStyle
+    }
+
+    .oneDivForm {
+      @include OneDiv
+    }
+
+    .emptySpace {
+      @include DefaultDiv
+    }
+
+    .exchangeBtt {
+      @include BttAndLogin;
+    }
+
+    .forumBtt {
+      @include BttAndLogin;
+    }
+
+    .loginForm {
+      @include BttAndLogin;
+
+      input {
+        @include inputStyle;
+      }
+
+      button {
+        @include buttonStyle;
+      }
+    }
