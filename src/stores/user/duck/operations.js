@@ -43,18 +43,36 @@ const fetchRegister = async (user) => {
   )
 }
 
+const fetchGetAllUsers = async () => {
+  const response = await
+  fetch (
+    'http://localhost:8001/index/user', {
+      method: 'GET',
+      credential: 'same-origin'
+    }
+  )
+  const json = await response.json()
+  return json
+}
+
 export const createSession = (data) =>
   async (dispatch) => {
+
     const token = await fetchLogin(data)
     let user = jwtDecode(token.token)
 
+    let allUsers = 'None'
+    if ( user.payload.privilige > 1 )
+      allUsers = await fetchGetAllUsers()
+
     let userFull = {
-      'token': token.token,
-      'id': user.payload.id,
-      'login': user.payload.login,
-      'privilige': user.payload.privilige,
-      'avatar': user.payload.avatar,
-      'email': user.payload.email
+      token: token.token,
+      id: user.payload.id,
+      login: user.payload.login,
+      privilige: user.payload.privilige,
+      avatar: user.payload.avatar,
+      email: user.payload.email,
+      allUsersList: allUsers
     }
 
     dispatch(actions.login(userFull))

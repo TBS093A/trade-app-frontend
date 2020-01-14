@@ -9,6 +9,7 @@ import actions from '../../stores/threads/duck/actions'
 import '../../styles/indexForum.scss'
 
 import ForumComments from './forumComments'
+import ForumSubjectUpdate from './forumSubjectUpdate'
 
 const ForumSubjects = ({
   user,
@@ -44,6 +45,8 @@ const ForumSubjects = ({
   const [commentText, setCommentText] = useState(0)
   const [titleText, setTitleText] = useState(0)
 
+  const [subjectEdit, setSubjectEdit] = useState( { isActive: false, subject_id: -1 } )
+
   if (threads.isActive === true && subjects.isActive === false) {
     return (
       <div>
@@ -57,34 +60,37 @@ const ForumSubjects = ({
         </div>
         <div className='forumItemsList'>
             { threads.subjectsList.map( subject =>
-              <div
-                className={subject.author_privilige === 3 ? 'forumListItem adminDivColor' :
-                  (subject.author_privilige === 2 ? 'forumListItem moderDivColor' : 'forumListItem') }
-                key={subject.id}>
-                  <p onClick={ () => getSubjectComments(subject) }>
-                    {subject.name}
-                  </p>
-                  <div></div>
-                    { (user.id === subject.user_id ||
-                       user.id === threads.actualThreadModeratorID ||
-                       user.privilige === 3) ? (
-                        <div>
-                          <button>
-                            Edit Title
-                          </button>
-                          <button>
-                            Delete Subject
-                          </button>
-                          <img src={subject.author_avatar} />
-                          <p>{subject.author}</p>
-                        </div>
-                      ) : (
-                        <div>
-                          <img src={subject.author_avatar} />
-                          <p>{subject.author}</p>
-                        </div>
+              <div>
+                <div
+                  className={subject.author_privilige === 3 ? 'forumListItem adminDivColor' :
+                    (subject.author_privilige === 2 ? 'forumListItem moderDivColor' : 'forumListItem') }
+                  key={subject.id}>
+                    <p onClick={ () => getSubjectComments(subject) }>
+                      {subject.name}
+                    </p>
+                    <div></div>
+                      { (user.id === subject.user_id ||
+                         user.id === threads.actualThreadModeratorID ||
+                         user.privilige === 3) ? (
+                          <div>
+                            <button onClick={ () => setSubjectEdit( { isActive: !subjectEdit.isActive, subject_id: subject.id } ) }>
+                              { subjectEdit.isActive === true ? 'Close Edit' : 'Edit Subject' }
+                            </button>
+                            <button>
+                              Delete Subject
+                            </button>
+                            <img src={subject.author_avatar} />
+                            <p>{subject.author}</p>
+                          </div>
+                        ) : (
+                          <div>
+                            <img src={subject.author_avatar} />
+                            <p>{subject.author}</p>
+                          </div>
                       )
                     }
+                  </div>
+                  <ForumSubjectUpdate subject={subject} thisSubject={subjectEdit} />
               </div>
             ) }
         </div>

@@ -47,7 +47,7 @@ const fetchPutSubject = async (data) => {
     return response.json()
   }
 
-  export const putSubject = (data) =>
+  export const updateSubject = (data) =>
     async (dispatch) => {
       const comments = await fetchPutSubject(data)
     }

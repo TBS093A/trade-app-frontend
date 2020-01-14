@@ -20,7 +20,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
         email: action.item.email,
         avatar: action.item.avatar,
         token: action.item.token,
-        isActive: true
+        isActive: true,
+        allUsersList: action.item.allUsersList
       }
     case types.LOGOUT_USER:
       return {
