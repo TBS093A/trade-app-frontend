@@ -2,21 +2,23 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
 import { refreshThreadSubjects } from '../../stores/threads/duck/operations'
-import { getSubjectComments, addSubject } from '../../stores/subjects/duck/operations'
+import { getSubjectComments, addSubject, deleteSubject } from '../../stores/subjects/duck/operations'
 import { addComment } from '../../stores/comments/duck/operations'
 import actions from '../../stores/threads/duck/actions'
 
 import '../../styles/indexForum.scss'
 
 import ForumComments from './forumComments'
+import ForumSubjectUpdate from './forumSubjectUpdate'
 
 const ForumSubjects = ({
   user,
   threads, deactivate,
-  subjects, addSubject, getSubjectComments,
+  subjects, addSubject, deleteSubject, getSubjectComments,
   comments, addComment }) => {
 
   const [formDiv, setFormDiv] = useState(false)
+  const [updateFormDiv, setUpdateFormDiv] = useState( { isActive: false, subject_id: -1 } )
 
   const addSubjectTitle = React.createRef()
   const addSubjectComment = React.createRef()
@@ -41,6 +43,16 @@ const ForumSubjects = ({
     }
   }
 
+  const deleteOldSubject = (subject) => {
+    if( user.id === subject.user_id || user.id === threads.actualThreadModeratorID || user.privilige === 3 ) {
+      let delSubject = {
+        token: user.token,
+        subject_id: subject.id
+      }
+      deleteSubject(delSubject)
+    }
+  }
+
   const [commentText, setCommentText] = useState(0)
   const [titleText, setTitleText] = useState(0)
 
@@ -57,6 +69,7 @@ const ForumSubjects = ({
         </div>
         <div className='forumItemsList'>
             { threads.subjectsList.map( subject =>
+              <div>
               <div
                 className={subject.author_privilige === 3 ? 'forumListItem adminDivColor' :
                   (subject.author_privilige === 2 ? 'forumListItem moderDivColor' : 'forumListItem') }
@@ -69,10 +82,10 @@ const ForumSubjects = ({
                        user.id === threads.actualThreadModeratorID ||
                        user.privilige === 3) ? (
                         <div>
-                          <button>
-                            Edit Title
+                          <button onClick={ () => setUpdateFormDiv( { isActive: !updateFormDiv.isActive, subject_id: subject.id } )}>
+                            { updateFormDiv.isActive ? 'Close Edit' : 'Edit Subject' }
                           </button>
-                          <button>
+                          <button onClick={ () => deleteOldSubject(subject) }>
                             Delete Subject
                           </button>
                           <img src={subject.author_avatar} />
@@ -85,6 +98,8 @@ const ForumSubjects = ({
                         </div>
                       )
                     }
+                </div>
+                <ForumSubjectUpdate subject={subject} thisSubject={updateFormDiv} />
               </div>
             ) }
         </div>
@@ -140,6 +155,7 @@ const mapDispatchToProps = dispatch => ({
   refreshThreadSubjects: threads => dispatch( refreshThreadSubjects(threads) ),
   getSubjectComments: subjects => dispatch( getSubjectComments(subjects) ),
   addSubject: subjects => dispatch( addSubject(subjects) ),
+  deleteSubject: subjects => dispatch( deleteSubject(subjects) ),
   addComment: comments => dispatch( addComment(comments) ),
 
   deactivate: () => dispatch( actions.deactivate() )

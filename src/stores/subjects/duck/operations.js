@@ -47,14 +47,14 @@ const fetchPutSubject = async (data) => {
     return response.json()
   }
 
-  export const putSubject = (data) =>
+  export const updateSubject = (data) =>
     async (dispatch) => {
       const comments = await fetchPutSubject(data)
     }
 
 const fetchDeleteSubject = async (data) => {
   const response = await
-    fetch('http://localhost:8001/index/subject/' + data.id, {
+    fetch('http://localhost:8001/index/subject/' + data.subject_id, {
         method: 'DELETE',
         credentials: 'same-origin',
         body: JSON.stringify(data)

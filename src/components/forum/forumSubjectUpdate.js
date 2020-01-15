@@ -17,14 +17,27 @@ const ForumSubjectUpdate = ({
   const updateSubjectTitle = React.createRef()
   const updateSubjectAuthor = React.createRef()
 
+  const [selectAuthorID, setSelectAuthorID] = useState(-1)
+  const [selectThreadID, setSelectThreadID] = useState(-1)
+
   const updateOldSubject = (event) => {
     event.preventDefault()
-    if ( updateSubjectTitle.current.value !== '') {
+    if ( updateSubjectTitle.current.value !== '' && selectAuthorID === -1 && selectThreadID === -1 ) {
       let putSubject = {
         id: subject.id,
         name: updateSubjectTitle.current.value,
-        user_id: user.id,
-        thread_id: threads.actualThreadID,
+        user_id: subject.user_id,
+        thread_id: subject.thread_id,
+        token: user.token
+      }
+      updateSubject(putSubject)
+      updateSubjectTitle.current.value = ''
+    } else if ( updateSubjectTitle.current.value !== '' && user.privilige >= 2 ) {
+      let putSubject = {
+        id: subject.id,
+        name: updateSubjectTitle.current.value,
+        user_id: selectAuthorID === -1 ? subject.user_id : selectAuthorID,
+        thread_id: selectThreadID === -1 ? subject.thread_id : selectThreadID,
         token: user.token
       }
       updateSubject(putSubject)
@@ -51,8 +64,8 @@ const ForumSubjectUpdate = ({
             <div>
               <select
                 name='updateSubjectAuthorText'
-                value={ user.allUsersList }
-                ref={ updateSubjectAuthor }>
+                onChange={ e => setSelectAuthorID( e.target.value ) }>
+                  <option value={ subject.user_id }>Choice Author ( actual: { subject.author } )</option>
                 { user.allUsersList.map( userObject =>
                     <option value={userObject.id}>{userObject.login}, Privilige: { userObject.privilige >= 2 ? 'Moderator' : 'Normal User' }</option>
                   )
@@ -60,7 +73,8 @@ const ForumSubjectUpdate = ({
               </select>
               <select
                 name='updateSubjectAuthorText'
-                value={ threads.threadsList }>
+                onChange={ e => setSelectThreadID( e.target.value ) }>
+                  <option value={ threads.actualThreadID }>Choice Thread ( actual: { threads.actualThreadName } )</option>
                 { threads.threadsList.map( threadObject =>
                     <option value={threadObject.id}>{threadObject.name}, moderator: {threadObject.moderator}</option>
                   )

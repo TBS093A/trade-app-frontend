@@ -98,6 +98,8 @@
       p:last-child {
         float: right;
         padding-top: 10px;
+        min-width: 120px;
+        text-align: right;
       }
 
 
@@ -186,10 +188,18 @@
       transition-duration: 0.5s;
 
       @include gapTopBetweenElements
+      form {
+        width: 100%;
+      }
       input {
         width: 100%;
         float: left;
         text-align: left;
+      }
+      select {
+        width: 100%;
+        float: left;
+
       }
       textarea {
         width: 100%;

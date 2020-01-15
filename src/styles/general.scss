@@ -7,6 +7,10 @@ body {
     @include inputStyle
   }
 
+  select {
+    @include inputStyle
+  }
+
   textarea {
     @include inputStyle
     text-align: left;
