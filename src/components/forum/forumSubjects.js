@@ -128,9 +128,9 @@ const ForumSubjects = ({
           </form>
         </div>
         <div className='forumFoot'>
-        <button onClick={ () => setFormDiv( !formDiv ) }>
-          { formDiv === true ? 'Close Add Subject' : 'Add Subject' }
-        </button>
+          <button onClick={ () => setFormDiv( !formDiv ) }>
+            { formDiv === true ? 'Close Add Subject' : 'Add Subject' }
+          </button>
         </div>
       </div>
     )
