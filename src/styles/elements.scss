@@ -5,6 +5,17 @@
   margin: auto;
 }
 
+@mixin scrollStyle {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 0px;
+  border-radius: 10px;
+  font-size: 12pt;
+  text-align: center;
+  color: rgba(111,108,106,1);
+  background-color: rgba(22,28,29,0.6);
+}
+
 @mixin inputStyle {
   width: 200px;
   height: 35px;

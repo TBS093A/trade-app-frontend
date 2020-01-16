@@ -26,6 +26,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       }
     case types.LOGOUT_USER:
       return {
+        id: -1,
         isActive: false
       }
     default:

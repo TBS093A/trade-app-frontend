@@ -1,0 +1,92 @@
+@import 'elements';
+
+.indexExchange {
+  position: relative;
+  z-index: 0;
+
+  width: 100%;
+  height: auto;
+
+  padding-top: 20vh;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+  @mixin centerEx {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @mixin exchangeChart {
+
+    width: 100%;
+    height: 600px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+
+    .chart {
+      height: 100%;
+
+      @include centerEx
+      .sectionChart {
+        width: 10px;
+        height: 100%;
+        margin-right: 5px;
+        float: left;
+
+        .sectionCandle {
+          width: 100%;
+          height: 400px;
+          @include centerEx
+
+          .candle {
+            width: 100%;
+            height: auto;
+
+            .candleMaxValue {
+              @include centerEx
+
+              width: 1px;
+            }
+
+            .candleHigh {
+              width: 100%;
+            }
+
+            .candleLow {
+              width: 100%;
+            }
+
+            .candleMinValue {
+              @include centerEx
+
+              width: 1px;
+            }
+          }
+        }
+        .sectionVolumen {
+
+          width: 100%;
+          height: 200px;
+          @include centerEx
+
+          .volumen {
+            width: 100%;
+            height: 20px;
+            background: gray;
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+
+  .exchangeChartGuest {
+    @include exchangeChart
+
+    margin-top: 5vh;
+  }
+
+  .exchangeChartUser {
+    @include exchangeChart
+  }

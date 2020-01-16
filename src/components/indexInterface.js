@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
 
 // Operations Redux
 
 import { createSession, deleteSession, updateSession, registerUser } from '../stores/user/duck/operations'
+import { getChart } from '../stores/exchange/duck/operations'
 
 // Actions Redux
 
@@ -28,9 +29,12 @@ import BtcLogo from '../images/BtcLogo.png'
 import ForumLogo from '../images/ForumLogo.png'
 
 const IndexInterface = ({
-  user, movements,
+  user, movements, exchange,
   createSession, deleteSession, updateSession, registerUser,
-  setRegister, setEdit, setForum, setExchange, setAdminPanel, resetMovements}) => {
+  setRegister, setEdit, setForum, setExchange, setAdminPanel, resetMovements,
+  getChart }) => {
+
+  useEffect( () => { getChart() }, [] )
 
   const loginInput = React.createRef()
   const passwordInput = React.createRef()
@@ -304,6 +308,7 @@ const IndexInterface = ({
 
 const mapStateToProps = state => ({
   user: state.user,
+  exchange: state.exchange,
   movements: state.movements
 })
 
@@ -318,7 +323,9 @@ const mapDispatchToProps = dispatch => ({
   setExchange: movements => dispatch( actions.exchange() ),
   setForum: movements => dispatch( actions.forum() ),
   setAdminPanel: movements => dispatch( actions.adminPanel() ),
-  resetMovements: movements => dispatch( actions.reset() )
+  resetMovements: movements => dispatch( actions.reset() ),
+
+  getChart: exchange => dispatch( getChart(exchange) )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexInterface)
