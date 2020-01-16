@@ -50,7 +50,7 @@ export const getChart = () =>
     dispatch(actions.setChart(chart))
   }
 
-export const getGetUserTriggers = () =>
+export const getUserTriggers = () =>
   async (dispatch) => {
     const triggers = await fetchGetUserTriggers()
     dispatch(actions.setUserTriggers(triggers))

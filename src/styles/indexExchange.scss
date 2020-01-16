@@ -7,7 +7,7 @@
   width: 100%;
   height: auto;
 
-  padding-top: 20vh;
+  padding-top: 175px;
 
   margin-left: auto;
   margin-right: auto;
@@ -21,7 +21,7 @@
 
     width: 100%;
     height: 600px;
-    overflow-y: hidden;
+    overflow: hidden;
     overflow-x: scroll;
 
     .chart {
@@ -33,6 +33,11 @@
         height: 100%;
         margin-right: 5px;
         float: left;
+
+        opacity: 0.6;
+        &:hover {
+          opacity: 1;
+        }
 
         .sectionCandle {
           width: 100%;
@@ -73,8 +78,7 @@
           .volumen {
             width: 100%;
             height: 20px;
-            background: gray;
-            opacity: 0.8;
+            background: rgba(0,0,0,0.3);
           }
         }
       }
@@ -90,3 +94,49 @@
   .exchangeChartUser {
     @include exchangeChart
   }
+
+@mixin exchangeInterface {
+  width: 100%;
+  height: auto;
+  background: rgba(0,0,0,0.2);
+
+  .candleInformation {
+    width: 1500px;
+    height: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    p {
+      width: 250px;
+      text-align: center;
+      float: left;
+    }
+  }
+}
+
+  .exchangeEmptySpace {
+    @include exchangeInterface
+  }
+  .exchangeInterface {
+    @include exchangeInterface
+  }
+
+.exchangeTriggerDativeY {
+  z-index: -1;
+  position: fixed;
+  width: 100vw;
+  height: 1px;
+  background-color: rgba(117,82,29,1);
+  transform: margin 700ms;
+}
+
+.exchangeTriggerDativeX {
+  z-index: -1;
+  position: fixed;
+  width: 1px;
+  height: 590px;
+  background-color: rgba(117,82,29,1);
+  transform: margin 700ms;
+}

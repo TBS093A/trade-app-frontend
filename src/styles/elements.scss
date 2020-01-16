@@ -6,14 +6,9 @@
 }
 
 @mixin scrollStyle {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border: 0px;
-  border-radius: 10px;
-  font-size: 12pt;
-  text-align: center;
-  color: rgba(111,108,106,1);
-  background-color: rgba(22,28,29,0.6);
+  width: 10px;
+  height: 10px;
+  background-color: rgba(22,28,29,0.5);
 }
 
 @mixin inputStyle {
@@ -59,7 +54,11 @@
   margin-bottom: 10px;
 }
 
-@mixin backgroundDivMenubarStyle{
+@mixin backgroundColorOnly {
+  background-color: rgba(22,28,29,0.4);
+}
+
+@mixin backgroundDivMenubarStyle {
   background-color: rgba(22,28,29,0.2);
   border-bottom: 1px solid;
   border-color: rgba(117,82,29,0.7);
