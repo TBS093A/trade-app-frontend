@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 
 import { getChart, getUserTriggers, getUserNotifications, getUserTransactions } from '../../stores/exchange/duck/operations'
 
+import { useInterval } from '../useInterval'
+
 import ExchangeTriggerAdd from './exchangeTriggerAdd'
+import ExchangePrognosis from './exchangePrognosis'
 
 import '../../styles/indexExchange.scss'
 
@@ -11,12 +14,15 @@ const IndexExchange = ({
   user,
   exchange, getChart, getUserTriggers, getUserNotifications,  getUserTransactions }) => {
 
-  useEffect( () => { getChart() }, [] )
-  useEffect( () => { getUserTriggers() }, [] )
+  let fifteenMinuts = 1500000
+
+  useInterval( () => {
+    getChart()
+  }, fifteenMinuts )
 
   const [candleInfo, setCandleInfo] = useState( { Open: 0, Close: 0, Min: 0, Max: 0, Vol: 0 } )
-
   const [mousePosition, setMousePosition] = useState( { x: 0, y: 0 } )
+  const [triggerValue, setTriggerValue] = useState(0)
 
   const colorGreen = {
     background: 'green'//'rgba(0,93,0,1)',
@@ -37,8 +43,8 @@ const IndexExchange = ({
      }
    )
  }
-
  let pixelScale = ( exchange.candles.graphMax - exchange.candles.graphMin ) / 590
+ let cursorValue = exchange.candles.graphMax - ( pixelScale * ( mousePosition.y - 175 ) )
 
  const getMousePosition = (event) => {
    setMousePosition( { x: event.pageX, y: event.pageY } )
@@ -50,12 +56,13 @@ const IndexExchange = ({
       <div className={ user.id > -1 ? 'exchangeChartUser' : 'exchangeChartGuest' }>
         <div className='chart'
              onMouseOver={ event => getMousePosition(event) }
+             onClick={ () => setTriggerValue( parseInt(cursorValue) ) }
              style={ { width: exchange.candles.candlesCount * 15 + 'px' } }>
           { user.id > -1 ? (
             <div>
               <div className='exchangeTriggerDativeY'
                   style={ { transform: 'translateY(' + (mousePosition.y - 175) + 'px)' } }>
-                  <p>{ ( exchange.candles.graphMax - ( pixelScale * ( mousePosition.y - 175 ) ) ) }</p>
+                  <p>{ parseInt(cursorValue) } PLN</p>
               </div>
               <div className='exchangeTriggerDativeX'
                    style={ { transform: 'translateX(' + (mousePosition.x) + 'px)' } }>
@@ -71,12 +78,12 @@ const IndexExchange = ({
                 let highValue = candle.Open > candle.Close ? candle.Open : candle.Close
                 let lowValue = candle.Open < candle.Close ? candle.Open : candle.Close
 
-                let scaleProperties = 8
+                let scaleProperties = 10
 
-                let chartScaleY = (exchange.candles.graphMax - candle.Max) / scaleProperties
+                let chartScaleY = (exchange.candles.graphMax - candle.Max) / pixelScale
 
                 let onePercentScaleY = 100 / chartScaleY
-                let difference = (( highValue - lowValue ) / onePercentScaleY ) / scaleProperties
+                let difference = ( highValue - lowValue ) / pixelScale
 
                 if ( parseInt(difference) === 0 )
                   difference = 1
@@ -93,26 +100,22 @@ const IndexExchange = ({
                         style={ { paddingTop: chartScaleY + 'px' } }>
                         <div
                           className='candleMaxValue'
-                          style={ { height: parseInt( (candle.Max - highValue ) / scaleProperties ) + 'px', background: color }}>
+                          style={ { height: parseInt( (candle.Max - highValue ) / pixelScale ) + 'px', background: color }}>
                         </div>
                         <div
                           className='candleHigh'
                           style={{ height: parseInt( difference ) + 'px', background: color }}>
                         </div>
                         <div
-                          className='candleLow'
-                          style={{ height: parseInt( difference ) + 'px', background: color }}>
-                        </div>
-                        <div
                           className='candleMinValue'
-                          style={ { height: parseInt( ( lowValue - candle.Min ) / scaleProperties ) + 'px', background: color }}>
+                          style={ { height: parseInt( ( lowValue - candle.Min ) / pixelScale ) + 'px', background: color }}>
                         </div>
                       </div>
                     </div>
 
                     <div className='sectionVolumen'>
                       <div className='volumen'
-                      style={ { height: candle.Volume + 'px' } }>
+                      style={ { height: candle.Volume / 1.5 + 'px' } }>
                       </div>
                     </div>
 
@@ -125,13 +128,22 @@ const IndexExchange = ({
       </div>
       <div className={ user.id > -1 ? 'exchangeInterface' : 'exchangeEmptySpace' }>
         <div className='candleInformation'>
-          <p>Open: { candleInfo.Open },</p>
-          <p>Close: { candleInfo.Close },</p>
-          <p>Max: { candleInfo.Max },</p>
-          <p>Min: { candleInfo.Min },</p>
+          <p>Open: { candleInfo.Open } PLN,</p>
+          <p>Close: { candleInfo.Close } PLN,</p>
+          <p>Max: { candleInfo.Max } PLN,</p>
+          <p>Min: { candleInfo.Min } PLN,</p>
           <p>Volume: { candleInfo.Vol },</p>
           <p>Date: { candleInfo.Date }</p>
         </div>
+        { user.id > -1 ? (
+            <div>
+              <ExchangeTriggerAdd triggerValue={ triggerValue } />
+              <ExchangePrognosis />
+            </div>
+          ) : (
+            <div></div>
+          )
+        }
       </div>
     </div>
   )

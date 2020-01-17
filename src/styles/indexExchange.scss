@@ -140,3 +140,82 @@
   background-color: rgba(117,82,29,1);
   transform: margin 700ms;
 }
+
+@mixin gapBetweenSectionsEx {
+  border-right: 2px dashed;
+  border-color: rgba(117,82,29,0.7);
+}
+
+@mixin exchangeDivInterface {
+  width: 32%;
+  height: 160px;
+  padding-left: 10px;
+  padding-right: 10px;
+  float:left;
+  background: rgba(0,0,0,0.2);
+  overflow: hidden;
+
+  @include gapBetweenSectionsEx
+}
+
+.exchangeTriggerDiv {
+  @include exchangeDivInterface
+
+  form {
+    width: 100%;
+    float: left;
+    display: flex;
+
+    p {
+      padding-top: 10px;
+      width: 50%;
+      text-align: center;
+    }
+    button {
+      width: 50%;
+    }
+  }
+
+  p {
+    float: left;
+    width: 50%;
+    height: 20px;
+    text-align: center;
+  }
+  .triggerItemList {
+    width: 100%;
+    height: 75px;
+    overflow-y: scroll;
+
+    .triggerItem {
+      width: 100%;
+      height: 20px;
+
+      p {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.exchangePrognosisDiv {
+  @include exchangeDivInterface
+
+  input {
+    width: 100%;
+    float: left;
+  }
+
+  p {
+    width: 50%;
+    height: 10px;
+    float: left;
+    padding-top: 10px;
+    text-align: center;
+
+    &:last-of-type {
+      width: 100%;
+    }
+  }
+
+}

@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   candles: [],
   userTriggers: [],
   userNotifications: [],
-  userTransactions: []
+  userTransactions: [],
+  prognosis: {}
 }
 
 const exchangeReducer = (state = INITIAL_STATE, action) => {
@@ -28,6 +29,11 @@ const exchangeReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         userTransactions: action.item
+      }
+    case types.NEW_PROGNOSIS:
+      return {
+        ...state,
+        prognosis: action.item
       }
     case types.RESET:
       return {

@@ -1,22 +1,54 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { getChart, getUserTriggers, getUserNotifications, getUserTransactions } from '../../stores/exchange/duck/operations'
+import { getChart, getUserTriggers, getUserNotifications, getUserTransactions, addTrigger } from '../../stores/exchange/duck/operations'
 
 import '../../styles/indexExchange.scss'
 
 const ExchangeTriggerAdd = ({
   user,
-  exchange, getChart, getUserTriggers, getUserNotifications,  getUserTransactions,
-  mousePosition }) => {
+  exchange, getChart, getUserTriggers, getUserNotifications,  getUserTransactions, addTrigger,
+  triggerValue }) => {
 
-  useEffect( () => { getUserTriggers(user) }, [] )
+  useEffect( () => { getUserTriggers(user.id) }, [] )
 
+  const [inputValue, setInputValue] = useState( triggerValue )
+  const [message, setMessage] = useState('')
+
+  const triggerValueAdd = React.createRef()
+
+  const addNewTrigger = (event) => {
+    event.preventDefault()
+    if ( triggerValue !== 0 ) {
+      let newTrigger = {
+        user_id: user.id,
+        course_values_for_trigger: triggerValue,
+        token: user.token
+      }
+      addTrigger( newTrigger )
+      setMessage('Trigger has been added')
+    }
+    else
+      setMessage('Trigger add error')
+  }
 
   return (
-    <div className='exchangeTriggerDativeY'
-         style={ { marginTop: mousePosition.y + 'px' } }>
-
+    <div className='exchangeTriggerDiv'>
+      <form onSubmit={ addNewTrigger }>
+        <p>Trigger value: { triggerValue } zł</p>
+        <button>
+          Add Trigger
+        </button>
+      </form>
+      <p>{ user.login } Triggers:</p>
+      <p>{ message }</p>
+      <div className='triggerItemList'>
+      { exchange.userTriggers
+        .sort( (a, b) => b.id - a.id  )
+        .map( (trigger, key) => (
+        <div key={ key } className='triggerItem'><p>{ key }. Value: { trigger.course_values_for_trigger } PLN, Date: { trigger.date_of_trigger }, Status { trigger.status === 1 ? 'Enabled' : 'Disabled' }</p></div>
+      ) ) }
+      </div>
     </div>
   )
 }
@@ -27,10 +59,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getChart: exchange => dispatch( getChart(exchange) ),
   getUserTriggers: exchange => dispatch( getUserTriggers(exchange) ),
-  getUserNotifications: exchange => dispatch( getUserNotifications(exchange) ),
-  getUserTransactions: exchange => dispatch( getUserTransactions(exchange) )
+  addTrigger: exchange => dispatch( addTrigger(exchange) )
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ExchangeTriggerAdd)

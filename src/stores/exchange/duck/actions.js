@@ -16,6 +16,14 @@ const setTransactions = item => ({
   type: types.GET_USER_TRANSACTIONS, item
 })
 
+const addNewTrigger = item => ({
+  type: types.ADD_NEW_TRIGGER, item
+})
+
+const setNewPrognosis = item => ({
+  type: types.NEW_PROGNOSIS, item
+})
+
 const reset = item => ({
   type: types.RESET, item
 })
@@ -25,5 +33,7 @@ export default {
   setTriggers,
   setNotifications,
   setTransactions,
+  addNewTrigger,
+  setNewPrognosis,
   reset
 }
