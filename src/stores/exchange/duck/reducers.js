@@ -5,7 +5,13 @@ const INITIAL_STATE = {
   userTriggers: [],
   userNotifications: [],
   userTransactions: [],
-  prognosis: {}
+  prognosis: {
+    price_forecast: 0,
+    percent_of_difference: 0,
+    course_on_payment: 0,
+    svg_of_all: 0,
+    date_of_transaction: ''
+  }
 }
 
 const exchangeReducer = (state = INITIAL_STATE, action) => {
@@ -30,6 +36,13 @@ const exchangeReducer = (state = INITIAL_STATE, action) => {
         ...state,
         userTransactions: action.item
       }
+    case types.DELETE_NOTIFICATION:
+      return {
+        ...state,
+        userNotifications: state.userNotifications.filter(
+            notify => notify.id !== action.item.id
+          )
+      }
     case types.NEW_PROGNOSIS:
       return {
         ...state,
@@ -40,7 +53,14 @@ const exchangeReducer = (state = INITIAL_STATE, action) => {
         ...state,
         userTriggers: [],
         userNotifications: [],
-        userTransactions: []
+        userTransactions: [],
+        prognosis: {
+          price_forecast: 0,
+          percent_of_difference: 0,
+          course_on_payment: 0,
+          svg_of_all: 0,
+          date_of_transaction: ''
+        }
       }
     default:
       return state

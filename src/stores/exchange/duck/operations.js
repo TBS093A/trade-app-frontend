@@ -65,6 +65,18 @@ const fetchPrognosis = async (data) => {
   return json
 }
 
+const fetchDeleteNotification = async (data) => {
+    const response = await fetch (
+    'http://localhost:8001/index/notification/' + data.id, {
+      method: 'DELETE',
+      credential: 'same-origin',
+      body: JSON.stringify(data)
+    }
+  )
+  const json = response.json()
+  return json
+}
+
 export const getChart = () =>
   async (dispatch) => {
     const chart = await fetchGetChart()
@@ -98,4 +110,10 @@ export const checkPrognosis = (data) =>
   async (dispatch) => {
     const prognosis = await fetchPrognosis(data)
     dispatch(actions.setNewPrognosis(prognosis))
+  }
+
+export const deleteNotification = (data) =>
+  async (dispatch) => {
+    dispatch(actions.deleteOldNotification(data))
+    await fetchDeleteNotification(data)
   }

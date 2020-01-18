@@ -7,6 +7,7 @@ import { useInterval } from '../useInterval'
 
 import ExchangeTriggerAdd from './exchangeTriggerAdd'
 import ExchangePrognosis from './exchangePrognosis'
+import ExchangeNotifications from './exchangeNotifications'
 
 import '../../styles/indexExchange.scss'
 
@@ -139,6 +140,7 @@ const IndexExchange = ({
             <div>
               <ExchangeTriggerAdd triggerValue={ triggerValue } />
               <ExchangePrognosis />
+              <ExchangeNotifications />
             </div>
           ) : (
             <div></div>

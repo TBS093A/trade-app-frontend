@@ -4,6 +4,8 @@
   position: relative;
   z-index: 0;
 
+  overflow-y: hidden;
+
   width: 100%;
   height: auto;
 
@@ -215,6 +217,29 @@
 
     &:last-of-type {
       width: 100%;
+    }
+  }
+}
+
+.exchangeNotificationsDiv {
+  @include exchangeDivInterface
+  border-right: 0px;
+
+  p {
+    text-align: center;
+  }
+
+  .notifyList {
+    overflow-y: scroll;
+    height: 120px;
+
+    p {
+      width: 90%;
+      float: left;
+    }
+    button {
+      margin-left: 2.5%;
+      float: left;
     }
   }
 

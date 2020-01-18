@@ -16,6 +16,10 @@ const setTransactions = item => ({
   type: types.GET_USER_TRANSACTIONS, item
 })
 
+const deleteOldNotification = item => ({
+  type: types.DELETE_NOTIFICATION, item
+})
+
 const addNewTrigger = item => ({
   type: types.ADD_NEW_TRIGGER, item
 })
@@ -33,6 +37,7 @@ export default {
   setTriggers,
   setNotifications,
   setTransactions,
+  deleteOldNotification,
   addNewTrigger,
   setNewPrognosis,
   reset
