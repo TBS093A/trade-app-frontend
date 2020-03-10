@@ -77,18 +77,6 @@ export const createSession = (data) =>
     }
 
     dispatch(actions.login(userFull))
-
-    store.subscribe(() => {
-      saveState({
-        auth: store.getState().auth
-      });
-    });
-    
-    store.subscribe(lodash.throttle(() => {
-      saveState({
-        auth: store.getState().auth
-      });
-    }, 1000));
   }
 
 export const updateSession = (data) =>
