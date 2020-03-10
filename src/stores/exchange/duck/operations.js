@@ -1,9 +1,10 @@
 import actions from './actions'
+import { address } from './../../apiAddress'
 
 const fetchGetChart = async () => {
   const response = await
     fetch (
-      'http://localhost:8001/index/exchange/' + 1800, {
+      address + '/index/exchange/' + 1800, {
         method: 'GET',
         credential: 'same-origin'
       })
@@ -14,7 +15,7 @@ const fetchGetChart = async () => {
 const fetchGetUserTriggers = async (userID) => {
   const response = await
     fetch (
-      'http://localhost:8001/index/user/' + userID + '/trigger', {
+      address + '/index/user/' + userID + '/trigger', {
         method: 'GET',
         credential: 'same-origin'
       })
@@ -25,7 +26,7 @@ const fetchGetUserTriggers = async (userID) => {
 const fetchGetUserTransactions = async (userID) => {
   const response = await
     fetch (
-      'http://localhost:8001/index/user/' + userID + '/transaction', {
+      address + '/index/user/' + userID + '/transaction', {
         method: 'GET',
         credential: 'same-origin'
       })
@@ -36,7 +37,7 @@ const fetchGetUserTransactions = async (userID) => {
 const fetchGetUserNotifications = async (userID) => {
   const response = await
     fetch (
-      'http://localhost:8001/index/user/' + userID + '/notification', {
+      address + '/index/user/' + userID + '/notification', {
         method: 'GET',
         credential: 'same-origin'
       })
@@ -46,7 +47,7 @@ const fetchGetUserNotifications = async (userID) => {
 
 const fetchAddTrigger = async (data) => {
   fetch (
-    'http://localhost:8001/index/user/' + data.user_id + '/trigger', {
+    address + '/index/user/' + data.user_id + '/trigger', {
       method: 'POST',
       credential: 'same-origin',
       body: JSON.stringify(data)
@@ -56,7 +57,7 @@ const fetchAddTrigger = async (data) => {
 
 const fetchPrognosis = async (data) => {
     const response = await fetch (
-    'http://localhost:8001/index/exchange/1800/prognosis/' + data.price, {
+    address + '/index/exchange/1800/prognosis/' + data.price, {
       method: 'GET',
       credential: 'same-origin'
     }
@@ -67,7 +68,7 @@ const fetchPrognosis = async (data) => {
 
 const fetchDeleteNotification = async (data) => {
     const response = await fetch (
-    'http://localhost:8001/index/notification/' + data.id, {
+    address + '/index/notification/' + data.id, {
       method: 'DELETE',
       credential: 'same-origin',
       body: JSON.stringify(data)

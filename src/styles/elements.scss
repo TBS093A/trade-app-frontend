@@ -32,7 +32,7 @@
   border: 0px;
   border-radius: 10px;
   font-size: 12pt;
-  color: rgba(117,82,29,1);
+  color: rgba(148,104,36,1); //rgba(117,82,29,1)
   background-color: rgba(22,28,29,1);
   transition-duration: 0.5s;
 
@@ -47,8 +47,11 @@
   }
 }
 
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,700);
+
 @mixin fontStyle {
-  color: rgba(117,82,29,1);
+  color: rgba(148,104,36,1); //rgba(117,82,29,1)
+  font-family: 'Ubuntu';
   font-size: 20px;
   margin-top: 0;
   margin-bottom: 10px;

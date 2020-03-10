@@ -22,7 +22,6 @@ const ForumComments = ({
   const [formDiv, setFormDiv] = useState(false)
 
   const addCommentTextArea = React.createRef()
-  const updateCommentTextArea = React.createRef()
 
   const addNewComment = (event) => {
     event.preventDefault()

@@ -14,7 +14,6 @@ const rootReducer = combineReducers({
   subjects: subjectReducer,
   comments: commentReducer,
   movements: movementsReducer,
-
   exchange: exchangeReducer
 })
 

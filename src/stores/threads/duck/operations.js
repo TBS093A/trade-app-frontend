@@ -1,9 +1,10 @@
 import actions from './actions'
+import { address } from './../../apiAddress'
 
 const fetchGetAll = async () => {
   const response = await
     fetch (
-      'http://localhost:8001/index/thread', {
+      address + '/index/thread', {
         method: 'GET',
         credential: 'same-origin'
       }
@@ -14,7 +15,7 @@ const fetchGetAll = async () => {
 const fetchGetSubjects = async (threadID) => {
   const response = await
   fetch(
-    'http://localhost:8001/index/thread/' + threadID + '/subject', {
+    address + '/index/thread/' + threadID + '/subject', {
       method: 'GET',
       credential: 'same-origin'
     }
@@ -25,7 +26,7 @@ const fetchGetSubjects = async (threadID) => {
 const fetchAddThread = async (data) => {
   const response = await
   fetch(
-    'http://localhost:8001/index/thread', {
+    address + '/index/thread', {
       method: 'POST',
       credential: 'same-origin',
       body: JSON.stringify(data)
@@ -37,7 +38,7 @@ const fetchAddThread = async (data) => {
 const fetchUpdateThread = async (data) => {
   const response = await
   fetch(
-    'http://localhost:8001/index/thread/' + data.id, {
+    address + '/index/thread/' + data.id, {
       method: 'PUT',
       credential: 'same-origin',
       body: JSON.stringify(data)
@@ -49,7 +50,7 @@ const fetchUpdateThread = async (data) => {
 const fetchDeleteThread = async (data) => {
   const response = await
   fetch(
-    'http://localhost:8001/index/thread/' + data.thread_id, {
+    address + '/index/thread/' + data.thread_id, {
       method: 'DELETE',
       credential: 'same-origin',
       body: JSON.stringify(data)

@@ -1,8 +1,9 @@
 import actions from './actions'
+import { address } from './../../apiAddress'
 
 const fetchSubjectComments = async (subject) => {
   const response = await
-    fetch('http://localhost:8001/index/subject/' + subject.id + '/comment', {
+    fetch(address + '/index/subject/' + subject.id + '/comment', {
       method: 'GET',
       credentials: 'same-origin'
     });
@@ -24,7 +25,7 @@ export const getSubjectComments = (data) =>
 
 const fetchAddSubject = async (data) => {
   const response = await
-    fetch('http://localhost:8001/index/thread/' + data.thread_id + '/subject', {
+    fetch(address + '/index/thread/' + data.thread_id + '/subject', {
         method: 'POST',
         credentials: 'same-origin',
         body: JSON.stringify(data)
@@ -39,7 +40,7 @@ const fetchAddSubject = async (data) => {
 
 const fetchPutSubject = async (data) => {
   const response = await
-    fetch('http://localhost:8001/index/subject/' + data.id, {
+    fetch(address + '/index/subject/' + data.id, {
         method: 'PUT',
         credentials: 'same-origin',
         body: JSON.stringify(data)
@@ -54,7 +55,7 @@ const fetchPutSubject = async (data) => {
 
 const fetchDeleteSubject = async (data) => {
   const response = await
-    fetch('http://localhost:8001/index/subject/' + data.subject_id, {
+    fetch(address + '/index/subject/' + data.subject_id, {
         method: 'DELETE',
         credentials: 'same-origin',
         body: JSON.stringify(data)
