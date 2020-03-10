@@ -17,6 +17,7 @@ import '../styles/index.scss'
 // Components
 
 import MenuBar from './menuBar/menuBar'
+import Chat from './chat/indexChat'
 
 import Exchange from './exchange/indexExchange'
 import Forum from './forum/indexForum'
@@ -239,6 +240,45 @@ const IndexInterface = ({
   }
   else if (user.privilige === 3) {
       return (
+        <div>
+          <div className='indexView'>
+            <video id='indexVideo' autoPlay muted loop>
+              <source src={VideoEx} type="video/mp4" />
+            </video>
+            <div className="interface">
+              <div className='exchangeBtt' onClick={ () => setExchange() }>
+                <img src={BtcLogo} />
+              </div>
+              <div className='forumBtt' onClick={ () => setForum() }>
+                <img src={ForumLogo} />
+              </div>
+              <div className='loginForm'>
+                <form>
+                  <p>Welcome</p>
+                  <p>{user.login}</p>
+                  <br />
+                </form>
+                <button onClick={ () => setAdminPanel() }>
+                  Admin Panel
+                </button>
+                <button onClick={ () => setEdit() }>
+                  Edit Account
+                </button>
+                <form onSubmit={userLogout}>
+                  <button>
+                    Log out
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <Chat />
+        </div>
+      )
+  }
+  else {
+    return (
+      <div>
         <div className='indexView'>
           <video id='indexVideo' autoPlay muted loop>
             <source src={VideoEx} type="video/mp4" />
@@ -256,10 +296,7 @@ const IndexInterface = ({
                 <p>{user.login}</p>
                 <br />
               </form>
-              <button onClick={ () => setAdminPanel() }>
-                Admin Panel
-              </button>
-              <button onClick={ () => setEdit() }>
+              <button onClick={ () => setEdit()}>
                 Edit Account
               </button>
               <form onSubmit={userLogout}>
@@ -270,37 +307,7 @@ const IndexInterface = ({
             </div>
           </div>
         </div>
-      )
-  }
-  else {
-    return (
-      <div className='indexView'>
-        <video id='indexVideo' autoPlay muted loop>
-          <source src={VideoEx} type="video/mp4" />
-        </video>
-        <div className="interface">
-          <div className='exchangeBtt' onClick={ () => setExchange() }>
-            <img src={BtcLogo} />
-          </div>
-          <div className='forumBtt' onClick={ () => setForum() }>
-            <img src={ForumLogo} />
-          </div>
-          <div className='loginForm'>
-            <form>
-              <p>Welcome</p>
-              <p>{user.login}</p>
-              <br />
-            </form>
-            <button onClick={ () => setEdit()}>
-              Edit Account
-            </button>
-            <form onSubmit={userLogout}>
-              <button>
-                Log out
-              </button>
-            </form>
-          </div>
-        </div>
+        <Chat />
       </div>
     )
   }

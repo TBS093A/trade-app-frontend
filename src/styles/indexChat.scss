@@ -1,0 +1,41 @@
+@import 'index';
+
+@mixin ChatWindowStyle {
+    position: fixed;
+    height: 400px;
+
+    border-radius: 10px 10px 0px 0px;
+    margin-left: 50px;
+    margin-top: -50px;
+
+    &:hover {
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    .chatMenuBar {
+        width: 300px;
+        height: 40px;
+        padding-top: 10px;
+        border-radius: 10px 10px 0px 0px;
+        background-color: rgba(22,28,29,0.8);
+        transition-duration: 0.2s;
+
+        &:hover {
+            color: rgba(22,28,29,1);
+            background-color: rgba(117,82,29,1);
+            transition-duration: 0.2s;
+        }
+    }
+}
+
+.chatWindowHide {
+    @include BigButtonStyle;
+    @include ChatWindowStyle;
+}
+
+.chatWindowOpen {
+    @include BigButtonStyle;
+    @include ChatWindowStyle;
+    
+    margin-top: -400px;
+}

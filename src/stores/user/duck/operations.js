@@ -1,6 +1,3 @@
-import { saveState, loadState } from '../../localStorage'
-import { store } from '../../store'
-import lodash from 'lodash'
 import actions from './actions'
 import { address } from './../../apiAddress'
 
