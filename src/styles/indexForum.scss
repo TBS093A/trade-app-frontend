@@ -6,7 +6,7 @@
 }
 
 .indexForum {
-  @include backgroundDefaultDivStyle
+  @include backgroundDefaultDivStyle;
 
   position: relative;
   z-index: 0;
@@ -48,8 +48,8 @@
   }
 
   .forumTitle {
-    @include forumDiv
-    @include gapTopBetweenElements
+    @include forumDiv;
+    @include gapTopBetweenElements;
     p {
       font-size: 50px;
       float: left;
@@ -75,7 +75,7 @@
   }
 
   .forumItemsList {
-    @include gapTopBetweenElements
+    @include gapTopBetweenElements;
 
     .forumListItem:last-child{
       border-bottom: 0px dashed;
@@ -88,7 +88,7 @@
       padding-left: 5%;
       padding-top: 15px;
 
-      @include gapBetweenItems
+      @include gapBetweenItems;
 
       p:first-child {
         font-size: 30px;
@@ -135,7 +135,7 @@
       transition-duration: 0.5s;
       display: flex;
 
-      @include gapBetweenItems
+      @include gapBetweenItems;
 
       &:last-child{
         border-bottom: 1px;
@@ -147,7 +147,7 @@
       padding: 50px;
       padding-bottom: 30px;
       text-align: center;
-      @include gapBetweenSections
+      @include gapBetweenSections;
 
       img {
         width: 200px;
@@ -166,7 +166,7 @@
 
       word-wrap: break-word;
 
-      @include gapBetweenSections
+      @include gapBetweenSections;
     }
     .commentRating {
       width: 15%;
@@ -181,13 +181,13 @@
     }
 
     .forumFormSubject {
-      @include forumDiv
+      @include forumDiv;
 
       height: auto;
       display: flex;
       transition-duration: 0.5s;
 
-      @include gapTopBetweenElements
+      @include gapTopBetweenElements;
       form {
         width: 100%;
       }
@@ -217,13 +217,13 @@
     }
 
     .forumFormComment {
-      @include forumDiv
+      @include forumDiv;
 
       height: auto;
       display: flex;
       transition-duration: 0.5s;
 
-      @include gapTopBetweenElements
+      @include gapTopBetweenElements;
       textarea {
         width: 100%;
         height: 200px;
@@ -239,7 +239,7 @@
     }
 
   .forumFoot {
-    @include forumDiv
+    @include forumDiv;
     button {
       float: right;
     }
