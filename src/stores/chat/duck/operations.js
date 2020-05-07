@@ -1,29 +1,34 @@
 import actions from './actions'
-import { webSocketAddress } from './../../apiAddress'
+import { webSocketAddress, address } from './../../apiAddress'
 
-// export const chatConnect = ( lobby ) => 
-//   async ( dispatch ) => {
-//     const host =  webSocketAddress + '' + lobby;
-//     try {
-//         dispatch(actions.wsConnect(host));
-//     } catch {
-//         console.log('chat connect error');
-//     }
-// }
-
-export const chatOnOpen = ( event ) => 
+export const chatOnOpen = ( data ) => 
   async ( dispatch ) => {
-    console.log('websocket open', event.target.url)
-    dispatch(actions.wsConnected(event.target.url))
+    dispatch(actions.wsConnect( webSocketAddress + '' + data + '/', data))
 }
+
+export const chatOnMessage = (data) => 
+  async (dispatch) => {
+    dispatch(actions.wsSaveMessage(data))
+  }
 
 export const chatOnClose = () => 
   async ( dispatch ) => {
-    dispatch(actions.wsDisconnected())
+    dispatch(actions.wsDisconnect())
 }
 
-export const chatOnMessage = ( event ) => 
+const fetchGetRooms = async () => {
+  const response = await
+  fetch (
+    address + '/chat/', {
+      method: 'GET',
+      credentials: 'same-origin'
+  })
+  const json = await response.json()
+  return json
+}
+
+export const getChatRooms = () => 
   async ( dispatch ) => {
-    const payload = JSON.parse(event.data)
-    dispatch(actions.wsSaveMessage(payload))
+    let roomList = await fetchGetRooms()
+    dispatch(actions.getRooms(roomList))
 }

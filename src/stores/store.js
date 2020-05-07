@@ -16,6 +16,7 @@ console.log(store.getState())
 store.subscribe(() => {
   saveState({
     user: store.getState().user,
+    chat: store.getState().chat,
     exchange: store.getState().exchange,
     comments: store.getState().comments,
     subjects: store.getState().subjects,
@@ -27,6 +28,7 @@ store.subscribe(() => {
 store.subscribe(lodash.throttle(() => {
   saveState({
     user: store.getState().user,
+    chat: store.getState().chat,
     exchange: store.getState().exchange,
     comments: store.getState().comments,
     subjects: store.getState().subjects,

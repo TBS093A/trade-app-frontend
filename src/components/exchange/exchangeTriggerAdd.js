@@ -46,7 +46,9 @@ const ExchangeTriggerAdd = ({
       { exchange.userTriggers
         .sort( (a, b) => b.id - a.id  )
         .map( (trigger, key) => (
-        <div key={ key + 1 } className='triggerItem'><p>{ key + 1 }. Value: { trigger.course_values_for_trigger } PLN, Date: { trigger.date_of_trigger }, Status { trigger.status === 1 ? 'Enabled' : 'Disabled' }</p></div>
+          <div key={ key + 1 } className='triggerItem'>
+            <p>{ key + 1 }. Value: { trigger.course_values_for_trigger } PLN, Date: { trigger.date_of_trigger }, Status { trigger.status === 1 ? 'Enabled' : 'Disabled' }</p>
+          </div>
       ) ) }
       </div>
     </div>

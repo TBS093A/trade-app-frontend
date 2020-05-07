@@ -1,4 +1,5 @@
 @import 'index';
+@import 'elements';
 
 @mixin ChatMessageStyle {
     padding-top: 10px;
@@ -13,11 +14,13 @@
     max-width: 190px;
 
     font-family: Ubuntu;
+    text-align: justify;
 }
 
 @mixin ChatWindowStyle {
     position: fixed;
     height: 400px;
+    width: 300px;
 
     border-radius: 10px 10px 0px 0px;
     margin-left: 50px;
@@ -40,6 +43,7 @@
             background-color: rgba(117,82,29,1);
             transition-duration: 0.2s;
         }
+
     }
     .chatBody {
         width: 100%;
@@ -57,6 +61,15 @@
                 margin-left: 5%;
                 width: 40%;
             }
+            .lobbyName {
+                margin-top: 15px;
+                width: 45%;
+                padding-left: 5%;
+                float: left;
+                text-align: left;
+                font-family: Ubuntu;
+                font-size: 17px;
+            }
         }
 
         .listMessage {
@@ -65,6 +78,13 @@
             border-top: 1px dashed;
             overflow-y: scroll;
             overflow-x: hidden;
+
+            .chatListItem {
+                padding: 20px;
+                font-family: Ubuntu;
+                text-align: left;
+                font-size: 14px;
+            }
 
             .rowMessage {
                 width: 100%;
@@ -79,18 +99,36 @@
                     margin-right: 20px;
                     margin-left: 20px;
                     border-radius: 50px;
-                    background-color: rgba(117,82,29,1);
-                }
 
-                .userMessage {
-                    @include ChatMessageStyle;
-                    color: rgba(22,28,29,1);
-                    background-color: rgba(117,82,29,1);
+                    img {
+                        width: 40px;
+                        height: 40px;
+                    }
                 }
+                .chatMessageDisplay {
+                    display: block;
+                    padding-right: 10px;
 
-                .otherMessage {
-                    @include ChatMessageStyle;
-                    border: 1px solid;
+                    .userMessage {
+                        @include ChatMessageStyle;
+                        color: rgba(22,28,29,1);
+                        background-color: rgba(117,82,29,1);
+                    }
+
+                    .otherMessage {
+                        @include ChatMessageStyle;
+                        border: 1px solid;
+                    }
+
+                    .messageWithImage {
+                        border-radius: 10px 10px 0px 0px;
+                        border-bottom: 0px;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
                 }
             }
         }
@@ -101,10 +139,30 @@
             border-top: 1px dashed;
 
             input {
-                width: 70%;
+                margin-left: 2%;
+                width: 55%;
             }
+
+            input.inputFile {
+                margin-right: -8%;
+                opacity: 0;
+            }
+
+            img.inputFile {
+                width: 10%;
+                height: 8%;
+                margin-left: -10%;
+                margin-top: 2%;
+                position: absolute;
+                z-index: -1;
+            }
+
+            .inputFile {
+                width: 15%;
+            }
+
             button {
-                margin-left: 5%;
+                margin-left: 2%;
                 width: 20%;
             }
         }
@@ -114,6 +172,21 @@
 .chatWindowHide {
     @include BigButtonStyle;
     @include ChatWindowStyle;
+
+    img {
+        opacity: 1;
+    }
+}
+
+.chatWindowChangeLobby {
+    @include BigButtonStyle;
+    @include ChatWindowStyle;
+
+    margin-top: -350px;
+
+    img {
+        opacity: 1;
+    }
 }
 
 .chatWindowOpen {
@@ -121,4 +194,8 @@
     @include ChatWindowStyle;
     
     margin-top: -400px;
+
+    img {
+        opacity: 1;
+    }
 }
