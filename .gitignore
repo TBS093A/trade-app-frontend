@@ -75,6 +75,4 @@ yarn-error.log
 *.mp4
 
 # Others
-.prettierignore
-.prettierrc
 package-lock.json
