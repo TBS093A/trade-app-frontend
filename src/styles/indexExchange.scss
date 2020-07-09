@@ -1,0 +1,257 @@
+@import 'elements';
+
+.indexExchange {
+  position: relative;
+  z-index: 0;
+
+  overflow: hidden;
+
+  width: 100%;
+
+  padding-top: 175px; //175px
+
+  margin-left: auto;
+  margin-right: auto;
+}
+  @mixin centerEx {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @mixin exchangeChart {
+
+    width: 100%;
+    height: 600px; //600px
+    overflow: hidden;
+    overflow-x: scroll;
+
+    .chart {
+      height: 100%;
+
+      @include centerEx;
+      .sectionChart {
+        width: 10px;
+        height: 100%;
+        margin-right: 5px;
+        float: left;
+
+        opacity: 0.6;
+        &:hover {
+          opacity: 1;
+        }
+
+        .sectionCandle {
+          width: 100%;
+          height: 400px;
+          @include centerEx;
+
+          .candle {
+            width: 100%;
+            height: auto;
+
+            .candleMaxValue {
+              @include centerEx;
+
+              width: 1px;
+            }
+
+            .candleHigh {
+              width: 100%;
+            }
+
+            .candleLow {
+              width: 100%;
+            }
+
+            .candleMinValue {
+              @include centerEx;
+
+              width: 1px;
+            }
+          }
+        }
+        .sectionVolumen {
+
+          width: 100%;
+          height: 200px;
+          @include centerEx;
+
+          .volumen {
+            width: 100%;
+            height: 20px;
+            background: rgba(0,0,0,0.3);
+          }
+        }
+      }
+    }
+  }
+
+  .exchangeChartGuest {
+    @include exchangeChart;
+
+    margin-top: 5vh;
+  }
+
+  .exchangeChartUser {
+    @include exchangeChart;
+  }
+
+@mixin exchangeInterface {
+
+  z-index: -1;
+  width: 100%;
+  height: 70%;
+  position: fixed;
+  top: 15%;
+  right: 0px;
+
+  .candleInformation {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+
+    p {
+      width: 16.66%;
+      text-align: center;
+      float: left;
+      font-size: 15px;
+    }
+  }
+}
+
+  .exchangeEmptySpace {
+    @include exchangeInterface;
+  }
+  .exchangeInterface {
+    @include exchangeInterface;
+  }
+
+.exchangeTriggerDativeY {
+  z-index: -1;
+  position: fixed;
+  width: 100vw;
+  height: 1px;
+  background-color: rgba(117,82,29,1);
+  transform: margin 700ms;
+}
+
+.exchangeTriggerDativeX {
+  z-index: -1;
+  position: fixed;
+  width: 1px;
+  height: 590px;
+  background-color: rgba(117,82,29,1);
+  transform: margin 700ms;
+}
+
+#exchangeInterfaceTwo {
+  background: rgba(0,0,0,0.1);
+}
+
+@mixin gapBetweenSectionsEx {
+  border-right: 2px dashed;
+  border-color: rgba(117,82,29,0.7);
+}
+
+@mixin exchangeDivInterface {
+  width: 31.25%;
+  height: 94%;
+  float: left;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 10px;
+  overflow: hidden;
+  p {
+    font-size: 16px;
+  }
+
+  @include gapBetweenSectionsEx
+}
+
+.exchangeTriggerDiv {
+  @include exchangeDivInterface;
+
+  form {
+    width: 100%;
+    float: left;
+    display: flex;
+
+    p {
+      padding-top: 10px;
+      width: 50%;
+      text-align: center;
+    }
+    button {
+      width: 50%;
+    }
+  }
+
+  p {
+    float: left;
+    width: 50%;
+    height: 20px;
+    text-align: center;
+  }
+  .triggerItemList {
+    width: 100%;
+    height: 75px;
+    overflow-y: scroll;
+
+    .triggerItem {
+      width: 100%;
+      height: 20px;
+
+      p {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.exchangePrognosisDiv {
+  @include exchangeDivInterface;
+
+  input {
+    width: 100%;
+    float: left;
+  }
+
+  p {
+    width: 50%;
+    height: 10px;
+    float: left;
+    padding-top: 10px;
+    text-align: center;
+
+    &:last-of-type {
+      width: 100%;
+    }
+  }
+}
+
+.exchangeNotificationsDiv {
+  @include exchangeDivInterface;
+  border-right: 0px;
+
+  p {
+    text-align: center;
+  }
+
+  .notifyList {
+    overflow-y: scroll;
+    height: 120px;
+
+    p {
+      width: 90%;
+      float: left;
+    }
+    button {
+      margin-left: 2.5%;
+      float: left;
+    }
+  }
+
+}

@@ -7,7 +7,8 @@ const INITIAL_STATE = {
   privilige: '',
   avatar: '',
   token: '',
-  isActive: false
+  isActive: false,
+  allUsersList: []
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -20,11 +21,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
         email: action.item.email,
         avatar: action.item.avatar,
         token: action.item.token,
-        isActive: true,
-        allUsersList: action.item.allUsersList
+        allUsersList: action.item.allUsersList,
+        isActive: true
       }
     case types.LOGOUT_USER:
       return {
+        id: -1,
         isActive: false
       }
     default:

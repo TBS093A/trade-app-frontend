@@ -16,7 +16,15 @@ const ForumCommentUpdate = ({
 
   const updateCommentTextArea = React.createRef()
 
-  const updateOldComment = (event) => {
+  const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
+  let subjectLoad = {
+    id: subjects.actualSubjectID
+  }
+
+  const updateOldComment = async (event) => {
     event.preventDefault()
     if ( updateCommentTextArea.current.value !== '' ) {
       let commentData = {
@@ -25,7 +33,9 @@ const ForumCommentUpdate = ({
         text: updateCommentTextArea.current.value
       }
       updateCommentTextArea.current.value = ''
-      updateComment(commentData)
+      await updateComment(commentData)
+      await sleep(100)
+      await refreshSubjectComments(subjectLoad)
     }
   }
 

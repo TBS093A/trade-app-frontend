@@ -34,6 +34,11 @@ const subjectReducer = (state = INITIAL_STATE, action) => {
          actualSubjectAuthorID: -1,
          isActive: false
        }
+      case types.ADD_COMMENT:
+        return {
+         ...state,
+         commentsList: [...state.commentsList, action.item] 
+        } 
       default:
         return state;
     }

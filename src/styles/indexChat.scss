@@ -1,0 +1,201 @@
+@import 'index';
+@import 'elements';
+
+@mixin ChatMessageStyle {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+    
+    max-width: 190px;
+
+    font-family: Ubuntu;
+    text-align: justify;
+}
+
+@mixin ChatWindowStyle {
+    position: fixed;
+    height: 400px;
+    width: 300px;
+
+    border-radius: 10px 10px 0px 0px;
+    margin-left: 50px;
+    margin-top: -50px;
+
+    &:hover {
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    .chatMenuBar {
+        width: 300px;
+        height: 40px;
+        padding-top: 10px;
+        border-radius: 10px 10px 0px 0px;
+        background-color: rgba(22,28,29,0.8);
+        transition-duration: 0.2s;
+
+        &:hover {
+            color: rgba(22,28,29,1);
+            background-color: rgba(117,82,29,1);
+            transition-duration: 0.2s;
+        }
+
+    }
+    .chatBody {
+        width: 100%;
+        height: 100%;
+
+        .lobbyMessage {
+            width: 100%;
+            height: 50px;
+            border-top: 1px dashed;
+
+            input {
+                width: 50%;
+            }
+            button {
+                margin-left: 5%;
+                width: 40%;
+            }
+            .lobbyName {
+                margin-top: 15px;
+                width: 45%;
+                padding-left: 5%;
+                float: left;
+                text-align: left;
+                font-family: Ubuntu;
+                font-size: 17px;
+            }
+        }
+
+        .listMessage {
+            width: 100%;
+            height: 250px;
+            border-top: 1px dashed;
+            overflow-y: scroll;
+            overflow-x: hidden;
+
+            .chatListItem {
+                padding: 20px;
+                font-family: Ubuntu;
+                text-align: left;
+                font-size: 14px;
+            }
+
+            .rowMessage {
+                width: 100%;
+                min-height: 40px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                display: flex;
+
+                .chatAvatar {
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 20px;
+                    margin-left: 20px;
+                    border-radius: 50px;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+                .chatMessageDisplay {
+                    display: block;
+                    padding-right: 10px;
+
+                    .userMessage {
+                        @include ChatMessageStyle;
+                        color: rgba(22,28,29,1);
+                        background-color: rgba(117,82,29,1);
+                    }
+
+                    .otherMessage {
+                        @include ChatMessageStyle;
+                        border: 1px solid;
+                    }
+
+                    .messageWithImage {
+                        border-radius: 10px 10px 0px 0px;
+                        border-bottom: 0px;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+
+        .textMessage {
+            width: 100%;
+            height: 50px;
+            border-top: 1px dashed;
+
+            input {
+                margin-left: 2%;
+                width: 55%;
+            }
+
+            input.inputFile {
+                margin-right: -8%;
+                opacity: 0;
+            }
+
+            img.inputFile {
+                width: 10%;
+                height: 8%;
+                margin-left: -10%;
+                margin-top: 2%;
+                position: absolute;
+                z-index: -1;
+            }
+
+            .inputFile {
+                width: 15%;
+            }
+
+            button {
+                margin-left: 2%;
+                width: 20%;
+            }
+        }
+    }
+}
+
+.chatWindowHide {
+    @include BigButtonStyle;
+    @include ChatWindowStyle;
+
+    img {
+        opacity: 1;
+    }
+}
+
+.chatWindowChangeLobby {
+    @include BigButtonStyle;
+    @include ChatWindowStyle;
+
+    margin-top: -350px;
+
+    img {
+        opacity: 1;
+    }
+}
+
+.chatWindowOpen {
+    @include BigButtonStyle;
+    @include ChatWindowStyle;
+    
+    margin-top: -400px;
+
+    img {
+        opacity: 1;
+    }
+}

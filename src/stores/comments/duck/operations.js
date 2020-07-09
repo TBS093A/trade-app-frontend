@@ -1,8 +1,9 @@
 import actions from './actions'
+import { address } from './../../apiAddress'
 
 const fetchRatingsComment = async (comment) => {
   const response = await
-    fetch ('http://localhost:8001/index/comment/' + comment.id + '/rating', {
+    fetch (address + '/index/comment/' + comment.id + '/rating', {
       method: 'GET',
       credentials: 'same-origin'
     });
@@ -10,7 +11,7 @@ const fetchRatingsComment = async (comment) => {
 }
 
 const fetchAddRating = async (data) => {
-  fetch ('http://localhost:8001/index/comment/' + data.comment_id + '/rating', {
+  fetch (address + '/index/comment/' + data.comment_id + '/rating', {
     method: 'POST',
     credentials: 'same-origin',
     body: JSON.stringify(data)
@@ -18,7 +19,7 @@ const fetchAddRating = async (data) => {
 }
 
 const fetchUpdateRating = async (rating) => {
-  fetch ('http://localhost:8001/index/rating/' + rating.id, {
+  fetch (address + '/index/rating/' + rating.id, {
     method: 'PUT',
     credentials: 'same-origin',
     body: JSON.stringify(rating)
@@ -48,7 +49,7 @@ export const updateRatingComment = (data) =>
   }
 
 const fetchAddComment = async (data) => {
-  fetch ('http://localhost:8001/index/subject/' + data.subject_id + '/comment', {
+  fetch (address + '/index/subject/' + data.subject_id + '/comment', {
     method: 'POST',
     credentials: 'same-origin',
     body: JSON.stringify(data)
@@ -56,7 +57,7 @@ const fetchAddComment = async (data) => {
 }
 
 const fetchUpdateComment = async (data) => {
-  fetch ('http://localhost:8001/index/comment/' + data.id, {
+  fetch (address + '/index/comment/' + data.id, {
     method: 'PUT',
     credentials: 'same-origin',
     body: JSON.stringify(data)
@@ -64,7 +65,7 @@ const fetchUpdateComment = async (data) => {
 }
 
 const fetchDeleteComment = async (data) => {
-  fetch ('http://localhost:8001/index/comment/' + data.id, {
+  fetch (address + '/index/comment/' + data.id, {
     method: 'Delete',
     credentials: 'same-origin',
     body: JSON.stringify(data)

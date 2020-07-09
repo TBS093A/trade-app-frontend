@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
 
 // Operations Redux
 
 import { createSession, deleteSession, updateSession, registerUser } from '../stores/user/duck/operations'
+import { getChart } from '../stores/exchange/duck/operations'
 
 // Actions Redux
 
@@ -16,6 +17,7 @@ import '../styles/index.scss'
 // Components
 
 import MenuBar from './menuBar/menuBar'
+import Chat from './chat/indexChat'
 
 import Exchange from './exchange/indexExchange'
 import Forum from './forum/indexForum'
@@ -28,9 +30,12 @@ import BtcLogo from '../images/BtcLogo.png'
 import ForumLogo from '../images/ForumLogo.png'
 
 const IndexInterface = ({
-  user, movements,
+  user, movements, exchange,
   createSession, deleteSession, updateSession, registerUser,
-  setRegister, setEdit, setForum, setExchange, setAdminPanel, resetMovements}) => {
+  setRegister, setEdit, setForum, setExchange, setAdminPanel, resetMovements,
+  getChart }) => {
+
+  useEffect( () => { getChart() }, [] )
 
   const loginInput = React.createRef()
   const passwordInput = React.createRef()
@@ -235,6 +240,45 @@ const IndexInterface = ({
   }
   else if (user.privilige === 3) {
       return (
+        <div>
+          <div className='indexView'>
+            <video id='indexVideo' autoPlay muted loop>
+              <source src={VideoEx} type="video/mp4" />
+            </video>
+            <div className="interface">
+              <div className='exchangeBtt' onClick={ () => setExchange() }>
+                <img src={BtcLogo} />
+              </div>
+              <div className='forumBtt' onClick={ () => setForum() }>
+                <img src={ForumLogo} />
+              </div>
+              <div className='loginForm'>
+                <form>
+                  <p>Welcome</p>
+                  <p>{user.login}</p>
+                  <br />
+                </form>
+                <button onClick={ () => setAdminPanel() }>
+                  Admin Panel
+                </button>
+                <button onClick={ () => setEdit() }>
+                  Edit Account
+                </button>
+                <form onSubmit={userLogout}>
+                  <button>
+                    Log out
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <Chat />
+        </div>
+      )
+  }
+  else {
+    return (
+      <div>
         <div className='indexView'>
           <video id='indexVideo' autoPlay muted loop>
             <source src={VideoEx} type="video/mp4" />
@@ -252,10 +296,7 @@ const IndexInterface = ({
                 <p>{user.login}</p>
                 <br />
               </form>
-              <button onClick={ () => setAdminPanel() }>
-                Admin Panel
-              </button>
-              <button onClick={ () => setEdit() }>
+              <button onClick={ () => setEdit()}>
                 Edit Account
               </button>
               <form onSubmit={userLogout}>
@@ -266,37 +307,7 @@ const IndexInterface = ({
             </div>
           </div>
         </div>
-      )
-  }
-  else {
-    return (
-      <div className='indexView'>
-        <video id='indexVideo' autoPlay muted loop>
-          <source src={VideoEx} type="video/mp4" />
-        </video>
-        <div className="interface">
-          <div className='exchangeBtt' onClick={ () => setExchange() }>
-            <img src={BtcLogo} />
-          </div>
-          <div className='forumBtt' onClick={ () => setForum() }>
-            <img src={ForumLogo} />
-          </div>
-          <div className='loginForm'>
-            <form>
-              <p>Welcome</p>
-              <p>{user.login}</p>
-              <br />
-            </form>
-            <button onClick={ () => setEdit()}>
-              Edit Account
-            </button>
-            <form onSubmit={userLogout}>
-              <button>
-                Log out
-              </button>
-            </form>
-          </div>
-        </div>
+        <Chat />
       </div>
     )
   }
@@ -304,6 +315,7 @@ const IndexInterface = ({
 
 const mapStateToProps = state => ({
   user: state.user,
+  exchange: state.exchange,
   movements: state.movements
 })
 
@@ -318,7 +330,9 @@ const mapDispatchToProps = dispatch => ({
   setExchange: movements => dispatch( actions.exchange() ),
   setForum: movements => dispatch( actions.forum() ),
   setAdminPanel: movements => dispatch( actions.adminPanel() ),
-  resetMovements: movements => dispatch( actions.reset() )
+  resetMovements: movements => dispatch( actions.reset() ),
+
+  getChart: exchange => dispatch( getChart(exchange) )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexInterface)

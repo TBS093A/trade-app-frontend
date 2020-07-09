@@ -1,11 +1,12 @@
 import actions from './actions'
+import { address } from './../../apiAddress'
 
 var jwtDecode = require('jwt-decode')
 
 const fetchLogin = async (user) => {
   const response = await
     fetch (
-      'http://localhost:8001/index/authUser', {
+      address + '/index/authUser', {
         method: 'POST',
         credential: 'same-origin',
         body: JSON.stringify(user),
@@ -16,7 +17,7 @@ const fetchLogin = async (user) => {
 
 const fetchLogout = async (userToken) => {
   fetch (
-    'http://localhost:8001/index/authUser', {
+    address + '/index/authUser', {
       method: 'DELETE',
       credential: 'same-origin',
       body: JSON.stringify(userToken),
@@ -26,7 +27,7 @@ const fetchLogout = async (userToken) => {
 
 const fetchUpdate = async (user) => {
   fetch (
-    'http://localhost:8001/index/user/' + user.id, {
+    address + '/index/user/' + user.id, {
       method: 'PUT',
       credential: 'same-origin',
       body: JSON.stringify(user),
@@ -35,7 +36,7 @@ const fetchUpdate = async (user) => {
 
 const fetchRegister = async (user) => {
   fetch (
-    'http://localhost:8001/index/user', {
+    address + '/index/user', {
       method: 'POST',
       credential: 'same-origin',
       body: JSON.stringify(user),
@@ -46,12 +47,12 @@ const fetchRegister = async (user) => {
 const fetchGetAllUsers = async () => {
   const response = await
   fetch (
-    'http://localhost:8001/index/user', {
+    address + '/index/user', {
       method: 'GET',
       credential: 'same-origin'
     }
   )
-  const json = await response.json()
+  const json = response.json()
   return json
 }
 
@@ -61,9 +62,7 @@ export const createSession = (data) =>
     const token = await fetchLogin(data)
     let user = jwtDecode(token.token)
 
-    let allUsers = 'None'
-    if ( user.payload.privilige > 1 )
-      allUsers = await fetchGetAllUsers()
+    let allUsers = await fetchGetAllUsers()
 
     let userFull = {
       token: token.token,
@@ -79,7 +78,7 @@ export const createSession = (data) =>
   }
 
 export const updateSession = (data) =>
-  async (dispatch) => {
+  async () => {
     await fetchUpdate(data)
   }
 
@@ -90,6 +89,6 @@ export const deleteSession = (data) =>
   }
 
 export const registerUser = (data) =>
-  async (dispatch) => {
+  async () => {
     await fetchRegister(data)
   }

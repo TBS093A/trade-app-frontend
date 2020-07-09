@@ -12,8 +12,13 @@ const deactivate = item => ({
   type: types.DEACTIVATE, item
 })
 
+const addComment = item => ({
+  type: types.ADD_COMMENT, item
+})
+
 export default {
   getSubjectComments,
   activate,
-  deactivate
+  deactivate,
+  addComment
 }

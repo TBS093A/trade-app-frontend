@@ -22,9 +22,16 @@ const ForumComments = ({
   const [formDiv, setFormDiv] = useState(false)
 
   const addCommentTextArea = React.createRef()
-  const updateCommentTextArea = React.createRef()
 
-  const addNewComment = (event) => {
+  let subjectLoad = {
+    id: subjects.actualSubjectID
+  }
+
+  const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
+  const addNewComment = async (event) => {
     event.preventDefault()
     if ( addCommentTextArea.current.value !== '' ) {
       let newComment = {
@@ -34,25 +41,21 @@ const ForumComments = ({
         token: user.token
       }
       addCommentTextArea.current.value = ''
-      addComment(newComment)
+      await addComment( newComment )
+      await sleep(100)
+      await refreshSubjectComments(subjectLoad)
       setFormDiv( !formDiv )
-      let actualSubject = {
-        id: subjects.actualSubjectID
-      }
-      refreshSubjectComments(actualSubject)
     }
   }
 
-  const deleteOldComment = (commentID) => {
+  const deleteOldComment = async(commentID) => {
     let delComment = {
       id: commentID,
       token: user.token
     }
-    deleteComment(delComment)
-    let actualSubject = {
-      id: subjects.actualSubjectID
-    }
-    refreshSubjectComments(actualSubject)
+    await deleteComment(delComment)
+    await sleep(100)
+    await refreshSubjectComments(subjectLoad)
   }
 
   const [commentText, setCommentText] = useState(0)
