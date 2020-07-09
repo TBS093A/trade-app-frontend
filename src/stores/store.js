@@ -11,7 +11,7 @@ const persistedState = loadState();
 
 export const store = createStore(rootReducer, persistedState, composeWithDevTools(applyMiddleware(thunk)))
 
-console.log(store.getState())
+// console.log(store.getState())
 
 store.subscribe(() => {
   saveState({

@@ -57,21 +57,22 @@ const ForumRatings = ({
     let divYPositionOnPage = ratingDiv.getBoundingClientRect().top + 72
     let yPosition = event.screenY - divYPositionOnPage
 
-    if ( yPosition > 200 ) {
+    if ( yPosition > 270 ) {
       setValue(5)
     }
-    else if ( yPosition > 150 && yPosition < 200 ) {
+    else if ( yPosition > 215 && yPosition < 270 ) {
       setValue(4)
     }
-    else if ( yPosition > 100 && yPosition < 150 ) {
+    else if ( yPosition > 168 && yPosition < 215 ) {
       setValue(3)
     }
-    else if ( yPosition > 50 && yPosition < 150 ) {
+    else if ( yPosition > 120 && yPosition < 168 ) {
       setValue(2)
     }
-    else if ( yPosition > 0 && yPosition < 50 ) {
+    else if ( yPosition > 60 && yPosition < 120 ) {
       setValue(1)
     }
+    console.log(yPosition)
   }
 
   const [updateRating, setUpdate] = useState(false)

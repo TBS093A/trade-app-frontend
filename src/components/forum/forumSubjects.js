@@ -23,6 +23,7 @@ const ForumSubjects = ({
   const addSubjectTitle = React.createRef()
   const addSubjectComment = React.createRef()
 
+  
   const addNewSubject = (event) => {
     event.preventDefault()
     if ( addSubjectTitle.current.value !== '' && addSubjectComment.current.value !== '' ) {

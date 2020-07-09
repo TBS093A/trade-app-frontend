@@ -14,11 +14,14 @@ $widthRT: 40px;
     width: 1px;
     height: 250px;
 
-    background-color: rgba(117,82,29,1);
+    border: solid 1px;
+    border-color: rgba(117,82,29,1);
     margin: auto;
   }
 
   .ratingValue {
+    width: $widthRT;
+    height: 250px;
     transition-duration: 0.5s;
   }
 
