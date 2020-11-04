@@ -1,0 +1,12 @@
+FROM node:15.0.1
+
+RUN npm install gatsby-cli
+
+WORKDIR /app
+
+RUN npm install
+
+EXPOSE 8000
+
+CMD["sysctl", "fs.inotify.max_user_watches=524288" ]
+CMD["gatsby", "develop"]
